@@ -154,6 +154,10 @@
         "description": "Virtual network address CIDR"
       }
     },
+        },
+        "vnetNewOrExisting": {
+            "value": "existing"
+        },
     "subnet0Name": {
       "type": "string",
       "defaultValue": "Mgmt",
