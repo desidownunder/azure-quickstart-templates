@@ -83,8 +83,8 @@
             }
         },
         "virtualNetworkAddressPrefixes": {
-            "type": "array",
-            "defaultValue": "[array('192.168.0.0/16')]",
+            "type": "string",
+            "defaultValue": "10.114.0.0/16",
             "metadata": {
                 "description": "Virtual network address CIDR"
             }
@@ -283,7 +283,7 @@
         "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet1Name'))]",
         "subnet2Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet2Name'))]",
         "publicIPAddressType": "Dynamic",
-        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')[0]]",
+        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')]",
         "subnets": [
             {
                 "name": "[parameters('subnet0Name')]",
