@@ -145,8 +145,19 @@
       "metadata": {
         "description": "Name of the virtual network that the consumer wants to use"
       },
-      "defaultValue": "panVnet"
+      "defaultValue": "TEST_VNET_10.114.0.0_16"
     },
+    "vnetNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new",
+            "allowedValues": [
+                "new",
+                "existing"
+            ],
+            "metadata": {
+                "description": "Use new or existing VNET"
+            }
+    },	    
     "virtualNetworkAddressPrefix": {
       "type": "string",
       "defaultValue": "192.168.0.0/16",
@@ -323,40 +334,6 @@
                     "access": "Deny",
                     "priority": 200,
                     "direction": "Inbound"
-                }
-            }]
-        }
-    }, {
-        "apiVersion": "[variables('apiVersion')]",
-        "type": "Microsoft.Network/virtualNetworks",
-        "name": "[parameters('virtualNetworkName')]",
-        "location": "[parameters('location')]",
-        "dependsOn": [
-            "[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgname-mgmt'))]"
-        ],
-        "properties": {
-            "addressSpace": {
-                "addressPrefixes": [
-                    "[parameters('virtualNetworkAddressPrefix')]"
-                ]
-            },
-            "subnets": [{
-                "name": "[parameters('subnet0Name')]",
-                "properties": {
-                    "addressPrefix": "[parameters('subnet0Prefix')]",
-                    "networkSecurityGroup": {
-                        "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgname-mgmt'))]"
-                    }
-                }
-            }, {
-                "name": "[parameters('subnet1Name')]",
-                "properties": {
-                    "addressPrefix": "[parameters('subnet1Prefix')]"
-                }
-            }, {
-                "name": "[parameters('subnet2Name')]",
-                "properties": {
-                    "addressPrefix": "[parameters('subnet2Prefix')]"
                 }
             }]
         }
